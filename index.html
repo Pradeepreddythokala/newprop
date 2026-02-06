@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -279,11 +279,9 @@
 <body>
     <div class="love-symbol">💖</div>
 
-    <!-- 🎵 BACKGROUND MUSIC ADDED 🎵 -->
+    <!-- 🎵 BACKGROUND MUSIC - YOUR MP3 FILE ADDED 🎵 -->
     <audio id="bgMusic" loop preload="auto">
-        <!-- ❌ REPLACE WITH YOUR ROMANTIC SONG URL -->
-        <!-- Use Google Drive direct link or any MP3 file -->
-        <source src="Chustu Chustune-[AudioTrimmer.com].mp3" type="audio/mpeg">
+        <source src="Chustu-Chustune-AudioTrimmer.com.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -297,10 +295,9 @@
 
     <div class="celebration hidden" id="celebration">
         <div class="photo-frame">
-            <!-- ❌ REPLACE WITH YOUR COUPLE PHOTO ID -->
+            <!-- ❌ REPLACE WITH YOUR COUPLE PHOTO URL -->
             <img src="lovesy.jpg" />
         </div>
-        <!-- <h2>Yay! You said YES! 💘</h2>-->
         <p>It's you and me, forever and always! ❤️</p>
     </div>
 
@@ -312,13 +309,15 @@
         const celebration = document.getElementById('celebration');
         const bgMusic = document.getElementById('bgMusic');
 
-        // 🎵 START BACKGROUND MUSIC ON PAGE LOAD 🎵
+        // 🎵 START BACKGROUND MUSIC AUTOMATICALLY 🎵
         window.addEventListener('load', () => {
-            bgMusic.volume = 0.3; // Set volume (0.0 to 1.0)
-            bgMusic.play().catch(e => console.log('Autoplay blocked'));
+            bgMusic.volume = 0.8; // Volume set to 30%
+            bgMusic.play().catch(e => {
+                console.log('Autoplay blocked by browser. Music will play on first interaction.');
+            });
         });
 
-        // 🎵 MUSIC CONTROL BUTTONS (OPTIONAL) 🎵
+        // 🎵 NO BUTTON RUNS AWAY ON HOVER 🎵
         noBtn.addEventListener('mouseenter', () => {
             const rect = mainContent.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
@@ -329,6 +328,7 @@
             noBtn.style.transform = `translate(${x}px, ${y}px)`;
         });
 
+        // 🎵 YES BUTTON - CELEBRATION MODE 🎵
         yesBtn.addEventListener('click', () => {
             yesBtn.classList.add('selected');
             body.classList.add('love-mode');
@@ -338,9 +338,8 @@
             mainContent.style.pointerEvents = 'none';
             document.querySelector('.love-symbol').style.opacity = '0.3';
 
-            // 🎵 CHANGE MUSIC ON YES CLICK (OPTIONAL) 🎵
-            // bgMusic.src = 'celebration-song.mp3';
-            // bgMusic.play();
+            // Increase music volume slightly for celebration
+            bgMusic.volume = 0.4;
 
             startHearts();
         });
@@ -361,19 +360,6 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 11000);
         }
-
-        // 🎵 MUSIC CONTROLS (OPTIONAL - ADD TO CONTAINER) 🎵
-        /*
-        const musicControls = `
-            <div style="position: absolute; top: 20px; right: 20px; z-index: 10;">
-                <button onclick="bgMusic.play()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 50%; margin: 0 5px; cursor: pointer;">▶️</button>
-                <button onclick="bgMusic.pause()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 50%; margin: 0 5px; cursor: pointer;">⏸️</button>
-            </div>`;
-        document.body.insertAdjacentHTML('afterbegin', musicControls);
-        */
     </script>
 </body>
 </html>
-
-
-
